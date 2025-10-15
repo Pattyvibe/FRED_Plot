@@ -227,18 +227,6 @@ if st.button("Refresh Data"):
             
             This provides an alternative measure of inflationary pressure based on monetary factors.
             """)
-            st.subheader("Latest Estimates (Second Set)")
-            for col in ['Real_Inflation', 'CPI_Inflation', 'Debt_YoY']:
-                latest_idx = data2[col].last_valid_index()
-                if latest_idx is not None:
-                    latest_date = latest_idx.strftime('%Y-%m-%d')
-                    latest_val = data2[col].loc[latest_idx]
-                    if col == 'Real_Inflation':
-                        st.write(f"M2-Based Inflation: {latest_val:.2f}% (as of {latest_date})")
-                    elif col == 'CPI_Inflation':
-                        st.write(f"CPI Inflation: {latest_val:.2f}% (as of {latest_date})")
-                    elif col == 'Debt_YoY':
-                        st.write(f"US Debt YoY % Change: {latest_val:.2f}% (as of {latest_date})")
         # --- Third Plot: BTC vs Gold with Separate Fear & Greed Plot ---
         start = '2021-01-01'
         end = datetime.date.today().strftime('%Y-%m-%d')
@@ -348,6 +336,7 @@ if st.button("Refresh Data"):
                     fig2.tight_layout()
                     st.subheader("Fear & Greed Plot (Matplotlib)")
                     st.pyplot(fig2)
+                st.image("https://alternative.me/crypto/fear-and-greed-index.png", caption="Latest Crypto Fear & Greed Index")
                 st.markdown("""
                 The Crypto Fear & Greed Index is a daily metric that analyzes emotions and sentiments from sources like volatility (25%), market momentum/volume (25%), social media (15%), Bitcoin dominance (10%), and trends (10%) to produce a value from 0 (Extreme Fear) to 100 (Extreme Greed). It helps identify market sentiment for better decision-making. Data sourced from [Alternative.me](https://alternative.me/crypto/fear-and-greed-index/).
                 """)
